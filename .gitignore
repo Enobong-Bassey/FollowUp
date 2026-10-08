@@ -1,0 +1,21 @@
+# .NET
+bin/
+obj/
+*.user
+*.suo
+.vs/
+
+# Local secrets / environment overrides
+appsettings.Development.json
+appsettings.Local.json
+*.env
+
+# Uploaded profile photos (user-generated content, not source)
+src/ChurchHospitalityApp/wwwroot/uploads/profile-photos/*
+!src/ChurchHospitalityApp/wwwroot/uploads/profile-photos/.gitkeep
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+*.swp

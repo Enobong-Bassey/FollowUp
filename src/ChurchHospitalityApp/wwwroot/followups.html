@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Follow-Ups · Church Hospitality App</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div id="navbar-root"></div>
+
+  <div class="page container">
+    <div class="page-header">
+      <h1>My Follow-Ups</h1>
+      <select id="statusFilter" style="width:auto;">
+        <option value="">All statuses</option>
+        <option value="Pending">Pending</option>
+        <option value="Completed">Completed</option>
+        <option value="Missed">Missed</option>
+      </select>
+    </div>
+
+    <div id="alertBox"></div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Guest</th>
+            <th>Phone</th>
+            <th>Week</th>
+            <th>Scheduled For</th>
+            <th>Status</th>
+            <th>Call Log</th>
+          </tr>
+        </thead>
+        <tbody id="followupsBody"></tbody>
+      </table>
+    </div>
+    <div id="emptyState" class="empty-state hidden">No follow-ups assigned to you yet.</div>
+  </div>
+
+  <div class="modal-backdrop hidden" id="logModalBackdrop">
+    <div class="modal">
+      <h2>Log Follow-Up Call</h2>
+      <div id="logAlertBox"></div>
+      <form id="logForm">
+        <input type="hidden" id="logFollowUpId">
+        <div class="form-group">
+          <label for="callDate">Call Date *</label>
+          <input type="date" id="callDate" required>
+        </div>
+        <div class="form-group">
+          <label for="outcome">Outcome *</label>
+          <select id="outcome" required>
+            <option value="Reached">Reached the guest</option>
+            <option value="NoAnswer">No answer</option>
+            <option value="LeftVoicemail">Left a voicemail</option>
+            <option value="WrongNumber">Wrong number</option>
+            <option value="RequestedNoContact">Requested no further contact</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="callStatus">Mark this follow-up as *</label>
+          <select id="callStatus" required>
+            <option value="Completed">Completed</option>
+            <option value="Missed">Missed (unable to reach after attempts)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="callNotes">Call Notes</label>
+          <textarea id="callNotes" maxlength="1500" placeholder="What was discussed, next steps, etc."></textarea>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn secondary" id="cancelLogBtn">Cancel</button>
+          <button type="submit" class="btn" id="saveLogBtn">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/nav.js"></script>
+  <script src="/js/followups.js"></script>
+</body>
+</html>

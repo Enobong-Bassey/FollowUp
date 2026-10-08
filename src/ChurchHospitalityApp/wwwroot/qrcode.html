@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Code · Church Hospitality App</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div id="navbar-root"></div>
+
+  <div class="page container" style="max-width:500px;">
+    <div class="page-header"><h1>Guest Check-In QR Code</h1></div>
+
+    <div id="alertBox"></div>
+
+    <div class="card qr-box">
+      <p class="text-muted">
+        Print this and place it at the welcome desk. Guests scan it to fill out their details from their phone.
+      </p>
+      <img id="qrImage" alt="QR code linking to the guest registration form">
+      <p style="word-break: break-all;">
+        <a id="formLink" href="#" target="_blank" rel="noopener"></a>
+      </p>
+      <a id="downloadLink" class="btn" download="guest-checkin-qr.png">Download PNG</a>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/nav.js"></script>
+  <script>
+    Api.requireAuth();
+    renderNav('qrcode');
+
+    if (Api.getUser().role !== 'Admin') {
+      window.location.href = '/dashboard.html';
+    }
+
+    (async () => {
+      const alertBox = document.getElementById('alertBox');
+      try {
+        const res = await fetch('/api/qrcode', {
+          headers: { 'Authorization': `Bearer ${Api.getToken()}` }
+        });
+        if (!res.ok) throw new Error('Could not load the QR code.');
+
+        const formUrl = res.headers.get('X-Guest-Form-Url') || '';
+        const objectUrl = URL.createObjectURL(await res.blob());
+
+        document.getElementById('qrImage').src = objectUrl;
+        document.getElementById('downloadLink').href = objectUrl;
+        const link = document.getElementById('formLink');
+        link.href = formUrl;
+        link.textContent = formUrl;
+      } catch (err) {
+        alertBox.innerHTML = `<div class="alert error">${Api.esc(err.message)}</div>`;
+      }
+    })();
+  </script>
+</body>
+</html>

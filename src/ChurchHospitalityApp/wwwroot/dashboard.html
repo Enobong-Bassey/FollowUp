@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard · Church Hospitality App</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div id="navbar-root"></div>
+
+  <div class="page container">
+    <div class="page-header">
+      <h1>Dashboard</h1>
+      <div id="scopeToggleWrap"></div>
+    </div>
+
+    <div id="alertBox"></div>
+
+    <div class="stat-grid">
+      <div class="stat-card pending">
+        <div class="stat-label">Pending Follow-Ups</div>
+        <div class="stat-value" id="pendingCount">–</div>
+      </div>
+      <div class="stat-card completed">
+        <div class="stat-label">Completed Follow-Ups</div>
+        <div class="stat-value" id="completedCount">–</div>
+      </div>
+      <div class="stat-card missed">
+        <div class="stat-label">Missed Follow-Ups</div>
+        <div class="stat-value" id="missedCount">–</div>
+      </div>
+    </div>
+
+    <div id="adminStats" class="stat-grid hidden">
+      <div class="stat-card">
+        <div class="stat-label">New Guests This Month</div>
+        <div class="stat-value" id="guestsMonthCount">–</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Active Members</div>
+        <div class="stat-value" id="activeMembersCount">–</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Unassigned Follow-Ups</div>
+        <div class="stat-value" id="unassignedCount">–</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="text-muted" style="margin:0;">
+        Welcome back! Use <strong>My Follow-Ups</strong> to see and log calls assigned to you, and
+        <strong>Profile</strong> to update your contact details and photo.
+        Admins can also add members, assign follow-ups, and get the guest QR code from the menu.
+      </p>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/nav.js"></script>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

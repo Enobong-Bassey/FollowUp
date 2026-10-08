@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Members · Church Hospitality App</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div id="navbar-root"></div>
+
+  <div class="page container">
+    <div class="page-header">
+      <h1>Hospitality Unit Members</h1>
+      <button class="btn" id="addMemberBtn">+ Add Member</button>
+    </div>
+
+    <div id="alertBox"></div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Role</th>
+            <th>Account</th>
+            <th>Active</th>
+          </tr>
+        </thead>
+        <tbody id="membersBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="modal-backdrop hidden" id="addModalBackdrop">
+    <div class="modal">
+      <h2>Add New Member</h2>
+      <p class="text-muted" style="font-size:0.85rem;">
+        They'll receive an email to confirm their address, set a password, and complete their profile.
+      </p>
+      <div id="addAlertBox"></div>
+      <form id="addForm">
+        <div class="form-group">
+          <label for="newFullName">Full Name *</label>
+          <input type="text" id="newFullName" required maxlength="150">
+        </div>
+        <div class="form-group">
+          <label for="newEmail">Email *</label>
+          <input type="email" id="newEmail" required>
+        </div>
+        <div class="form-group">
+          <label for="newPhone">Phone Number *</label>
+          <input type="tel" id="newPhone" required>
+        </div>
+        <div class="form-group">
+          <label for="newRole">Role *</label>
+          <select id="newRole" required>
+            <option value="User">User</option>
+            <option value="Admin">Admin</option>
+          </select>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn secondary" id="cancelAddBtn">Cancel</button>
+          <button type="submit" class="btn" id="saveAddBtn">Send Invite</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/nav.js"></script>
+  <script src="/js/members.js"></script>
+</body>
+</html>
